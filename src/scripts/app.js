@@ -16,7 +16,9 @@
    'ngRoute',
    'ngMessages',
    'ngSanitize',
-   'ngTouch'
+   'ngTouch',
+   'tink.tinkApi',
+   'tink.navigation'
    ])
  .config(function ($routeProvider) { /*, $locationProvider */
   $routeProvider

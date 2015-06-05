@@ -1,4 +1,46 @@
 // Tabula rasa
-@import "../../../bower_components/tink-core/dist/tink/variables";
-@import "../../../bower_components/tink-core/dist/tink/functions";
-@import "../../../bower_components/tink-core/dist/tink/mixins";
+@import "../../bower_components/tink-core/dist/tink/variables";
+@import "../../bower_components/tink-core/dist/tink/functions";
+@import "../../bower_components/tink-core/dist/tink/mixins";
+
+html {
+	&.has-nav-left {
+		&.nav-left-can-always-close {
+
+			// Nav left is NOT open
+			@include mq($screen-sm) {
+				.main {
+					padding-left: 0;
+		    }
+		    .nav-left {
+		    	transform: translate(rem(-$nav-aside-width), 0);
+		    }
+		  }
+
+			// Nav left is open
+			&.nav-left-open {
+				@include mq($screen-sm) {
+					.main {
+			      padding-left: rem($nav-aside-width + $nav-aside-extra-body-padding);
+			    }
+			    .nav-left {
+			      transform: translate(0, 0);
+			    }
+			  }
+		  }
+
+			// Make sure the toggle is always visible
+			.nav-top {
+				&-branding {
+					> li {
+						&.toggle {
+							@include mq($screen-sm) {
+								display: block;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -11,29 +11,13 @@ module.exports = function (grunt) {
   // Check for a new version
   var currentversion = require('./bower_components/tink-core/bower.json').version;
 
-  var bowerFile = grunt.file.readJSON('./bower.json');
-
-  var prodComponents = Object.keys(bowerFile.dependencies).concat(Object.keys(bowerFile.devDependencies)).filter(
-      function(prodComponent) {
-        if(prodComponent.substr(0, 5) === 'tink-'){
-          return true;
-        }
-        return false;
-      }
-    ).map(
-      function(prodComponent) {
-          return prodComponent + '/*.md';
-      }
-  );
-
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'src',
     dist: 'dist',
     version: currentversion,
     module: require('./package.json').name,
-    domain: 'tink.master-detail',
-    tinkReadme: prodComponents
+    domain: 'tink.master-detail'
   };
 
   // Define the configuration for all the tasks
@@ -44,11 +28,7 @@ module.exports = function (grunt) {
     watch: {
       bower: {
         files: ['bower.json'],
-        tasks: ['wiredep', 'copy:dependenciesMd']
-      },
-      md: {
-        files: ['bower_components/tink-*/bower.json'],
-        tasks: ['wiredep', 'copy:dependenciesMd']
+        tasks: ['wiredep']
       },
       js: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
@@ -127,10 +107,10 @@ module.exports = function (grunt) {
     },
     connect: {
       options: {
-        port: 9002,
+        port: 9004,
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: '0.0.0.0',
-        livereload: 35731
+        livereload: 35733
       },
       livereload: {
         options: {
@@ -262,14 +242,7 @@ module.exports = function (grunt) {
       //     }
       //   ]
       // },
-       dependenciesMd:{
-        files: [{
-            expand: true,
-            cwd: 'bower_components',
-            src: '<%= yeoman.tinkReadme %>',
-            dest: '<%= yeoman.app %>/markdown'
-        }]
-      },
+      // },
       dist: {
         files: [
           {
@@ -548,7 +521,6 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
-      'copy:dependenciesMd',
       'wiredep',
       'concurrent:server',
       'replace:liveRev',
@@ -568,7 +540,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'copy:dependenciesMd',
     'replace:md',
     'replace:html',
     'wiredep',
