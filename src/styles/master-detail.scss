@@ -44,3 +44,49 @@ html {
 		}
 	}
 }
+
+
+/**
+ * Split view specific
+ */
+
+.main {
+	height: 100vh; // TO DO: check if this is ok to do by default
+}
+
+%split-view {
+	height: 100%;
+	overflow: hidden;
+}
+
+.split-pane {
+	display: block;
+	float: left;
+	overflow: auto;
+}
+
+.split-view-vertical {
+	@extend %split-view;
+
+	.split-pane {
+		height: 100%;
+		width: 50%;
+
+		&:first-child {
+			border-right: 1px solid $gray-light;
+		}
+	}
+}
+
+.split-view-horizontal {
+	@extend %split-view;
+
+	.split-pane {
+		height: 50%;
+		width: 100%;
+
+		&:first-child {
+			border-bottom: 1px solid $gray-light;
+		}
+	}
+}

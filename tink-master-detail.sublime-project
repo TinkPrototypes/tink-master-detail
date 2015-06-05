@@ -16,8 +16,8 @@
 			],
 			"folder_exclude_patterns":
 			[
-				"bower_components",
-				"dist",
+				// "bower_components",
+				// "dist",
 				"node_modules",
 				".sass-cache"
 			],
