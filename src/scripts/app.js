@@ -26,6 +26,10 @@
     templateUrl: 'views/main.html',
     controller: 'MainCtrl'
   })
+  .when('/hello', {
+    templateUrl: 'views/hello.html',
+    controller: 'MainCtrl'
+  })
   .otherwise({
     redirectTo: '/'
   });
