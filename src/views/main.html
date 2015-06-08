@@ -18,9 +18,11 @@
     </div>
     <ul class="list-mailbox">
       <li data-ng-repeat="message in messages" data-ng-class="{'unread': message.unread}">
-        <a href="javascript:void()" title="{{message.title}} - {{message.description}}">
-          <span class="list-mailbox-title">{{message.title}}</span>
-          <span class="category">{{message.category}}</span>
+        <a title="{{message.title}} - {{message.description}}">
+          <div>
+            <span class="list-mailbox-title">{{message.title}}</span>
+            <span class="list-mailbox-category">{{message.category}}</span>
+          </div>
           <span class="list-mailbox-description">{{message.description}}</span>
         </a>
       </li>
