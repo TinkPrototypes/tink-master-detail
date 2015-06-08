@@ -8,6 +8,9 @@
  		transclude:true,
  		link:function(scope,elem,attr,ctrl){
  			ctrl.setListView(elem);
+ 			if(attr.tinkInitSize){
+ 				ctrl.setListViewSize(attr.tinkInitSize);
+ 			}
  		}
  	}
  }]);

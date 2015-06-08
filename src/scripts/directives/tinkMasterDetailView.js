@@ -25,6 +25,15 @@
  				}
  			}
 
+ 			this.setInitSize = function(size){
+ 				size = parseInt(size);
+ 				if(size >=10 && size <= 90 && $element.listView && $element.contentView){
+ 					$split.first.width(size-1+'%');
+	    		$split.second.width((100-size-1)+'%');
+	    		$split.bar.css('left','calc('+size+'% - 3px)');
+ 				}
+ 			}
+
  			this.setVertical = function(){
  				$direction = 'vertical';
  			}
@@ -81,9 +90,12 @@
 	    function changeX(e){
 	    	var pageX = pointerEventToXY(e).x;
 	    	var x = (pageX-$split.first.offset().left)/$element.main.outerWidth(true) *100;
-	    	$split.first.width(x-1+'%');
-	    	$split.bar.css('left','calc('+x+'% - 3px)');
-	    	$split.second.width((100-x-1)+'%');
+	    	if(x> 10 && x < 90){
+	    		$split.first.width(x-1+'%');
+	    		$split.bar.css('left','calc('+x+'% - 3px)');
+	    		$split.second.width((100-x-1)+'%');
+	    	}
+	    	
 	    }
 
 	    function changeY(e){
@@ -133,6 +145,10 @@
  			}else{
  				elem.addClass('split-view-vertical');
  				ctrl.setVertical();
+ 			}
+
+ 			if(attr.tinkInitSize){
+ 				ctrl.setInitSize(attr.tinkInitSize);
  			}
 
 			scope.$on('$destroy',function handleDestroyEvent() {
