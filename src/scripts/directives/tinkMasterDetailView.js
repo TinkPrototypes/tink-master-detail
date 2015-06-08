@@ -5,12 +5,14 @@
  		restirct:'E',
  		templateUrl:'templates/tinkMasterDetailView.html',
  		transclude:'true',
+ 		replace:true,
  		scope:true,
  		priority:99,
- 		controller:function($scope,$element){console.log($element);
+ 		controller:function($scope,$element){
  			var ctrl = this;
- 			var $element={listView:undefined,contentView:undefined};
+ 			var $element={listView:undefined,contentView:undefined,main:undefined};
  			var $split={first:undefined,second:undefined,bar:undefined};
+ 			var $direction='vertical';
  			this.setListView = function(element){
  				//there can only be one listview
  				if($element.listView !== null && $element.listView !== undefined){
@@ -23,14 +25,26 @@
  				}					
  			}
 
+ 			this.setVertical = function(){
+ 				$direction = 'vertical';
+ 			}
+
+ 			this.setHorizontal = function(){
+ 				$direction = 'horizontal';
+ 			}
+
+ 			this.setMain = function(element){
+ 				$element.main = element;
+ 			}
+
  			function addview(element){
  					//check if this is the first or the second view ! 
 	 				if($split.first === null || $split.first === undefined){
 	 					$split.first = $(element).find('.split-pane');
 	 					//if we have the first view add the resize bar.
 	 					$split.first.css('position','relative');
-	 					$split.bar = $('<div class="split-resize"></div>');
-	 					$split.first.append($split.bar);
+	 					$split.bar = $('<div class="split-handle"></div>');
+	 					$(element).after($split.bar);
 	 				}else if($split.second === null || $split.second === undefined){
 	 					$split.second = $(element).find('.split-pane');
 	 					//Add the resize event if all the panes are added.
@@ -64,36 +78,61 @@
 	      return out;
 	    };
 
+	    function changeX(e){
+	    	var pageX = pointerEventToXY(e).x;
+	    	var x = (pageX-$split.first.offset().left)/$element.main.outerWidth(true) *100;
+	    	$split.first.width(x-1+'%');
+	    	$split.bar.css('left','calc('+x+'% - 3px)');
+	    	$split.second.width((100-x-1)+'%');
+	    }
+
+	    function changeY(e){
+	    	var pageY = pointerEventToXY(e).y;
+	    	var y = (pageY-$split.first.offset().top)/$element.main.outerHeight(true) *100;
+	    	$split.first.height(y-1+'%');
+	    	$split.bar.css('top','calc('+y+'% - 2.5px)');
+	    	$split.second.height((100-y-1)+'%');
+	    }
+
  			this.addReziseEvent = function(){
  				$split.bar.bind('mousedown touchstart',function(e){
 				    $(document).bind('mousemove touchmove',function (e) {
-				    	var pageX = pointerEventToXY(e).x;
-				    	var x = (pageX-$split.first.offset().left)/$(document).width() *100;
-				    	//alert(pageX)
-				    	$split.first.width(x+'%');
-				    	$split.second.width((100-x)-2+'%');
+				    	if($direction==='vertical'){
+				    		$('html').addClass('ew-resize');
+				    		changeX(e);
+				    		
+				    	}else if($direction ==='horizontal'){
+				    		$('html').addClass('ns-resize');
+				    		changeY(e);
+				    	}
 				    });
 				    return false;
  				})
- 				$split.first.bind('mouseup touchend',function(){
+ 				$split.bar.bind('mouseup touchend',function(){
+ 					//var x = parseInt($split.bar.css('left'))/$(document).innerWidth() *100;
+ 					//$split.bar.css('left','calc('+x+'% + 3px)');
+ 					$('html').removeClass('ns-resize').removeClass('ew-resize');
  					$(document).unbind('mousemove touchmove');
  				})
  			}
 
  			this.removeResizeEvent = function(){
- 				$split.first.unbind('mousedown touchstart');
+ 				$split.bar.unbind('mousedown touchstart');
  			}
  		},
  		link:function(scope,elem,attr,ctrl){
-
+ 			ctrl.setMain($(elem));
  			if(attr.tinkSplitViewDirection){
  				if(attr.tinkSplitViewDirection === 'horizontal'){
  					elem.addClass('split-view-horizontal');
+ 					ctrl.setHorizontal();
  				}else{
  					elem.addClass('split-view-vertical');
+ 					ctrl.setVertical();
  				}
  			}else{
  				elem.addClass('split-view-vertical');
+ 				ctrl.setVertical();
  			}
 
 			scope.$on('$destroy',function handleDestroyEvent() {
