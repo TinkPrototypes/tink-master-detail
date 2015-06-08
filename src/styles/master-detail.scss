@@ -57,6 +57,12 @@ html {
 %split-view {
 	height: 100%;
 	overflow: hidden;
+	position: relative;
+	z-index: layer("base");
+}
+
+.split-handle {
+	position: absolute;
 }
 
 .split-pane {
@@ -74,7 +80,17 @@ html {
 
 		&:first-child {
 			border-right: 1px solid $gray-light;
+			z-index: 2;
 		}
+	}
+
+	.split-handle {
+		bottom: 0;
+		cursor: ew-resize;
+		left: calc(50% - 3px);
+		top: 0;
+		width: 5px;
+		z-index: layer("pseudo");
 	}
 }
 
@@ -88,5 +104,14 @@ html {
 		&:first-child {
 			border-bottom: 1px solid $gray-light;
 		}
+	}
+
+	.split-handle {
+		left: 0;
+		cursor: ns-resize;
+		height: 5px;
+		right: 0;
+		top: calc(50% - 2.5px);
+		z-index: layer("pseudo");
 	}
 }
