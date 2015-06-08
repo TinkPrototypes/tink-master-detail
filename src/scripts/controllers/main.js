@@ -8,45 +8,97 @@
  * Controller of the tinkApp
  */
  angular.module('tinkApp')
- .controller('MainCtrl', function ($scope, $rootScope, $location, $anchorScroll, tinkApi) {
+ .controller('MainCtrl', function ($scope, $rootScope, tinkApi) {
 
+  $scope.messages = [
+    {
+      title: 'Pasta ipsum dolor sit amet',
+      type: 'eID',
+      category: 'Pasta',
+      description: 'Trennette pasta al ceppo zitoni mafalde fettucelle scialatelli linguine occhi di lupo fiorentine agnolotti. Ziti quadrefiore zitoni creste di galli orzo fettucelle conchiglie gnocchi penne lisce gnocchi spaghettini pillus calamaretti gemelli pillus.',
+      unread: true,
+      icons: []
+    },
+    {
+      title: 'Pasta ipsum dolor sit amet',
+      type: 'eID',
+      category: 'Pasta',
+      description: 'Trennette pasta al ceppo zitoni mafalde fettucelle scialatelli linguine occhi di lupo fiorentine agnolotti. Ziti quadrefiore zitoni creste di galli orzo fettucelle conchiglie gnocchi penne lisce gnocchi spaghettini pillus calamaretti gemelli pillus.',
+      unread: true,
+      icons: []
+    },
+    {
+      title: 'Pasta ipsum dolor sit amet',
+      type: 'eID',
+      category: 'Pasta',
+      description: 'Trennette pasta al ceppo zitoni mafalde fettucelle scialatelli linguine occhi di lupo fiorentine agnolotti. Ziti quadrefiore zitoni creste di galli orzo fettucelle conchiglie gnocchi penne lisce gnocchi spaghettini pillus calamaretti gemelli pillus.',
+      unread: true,
+      icons: []
+    },
+    {
+      title: 'Pasta ipsum dolor sit amet',
+      type: 'eID',
+      category: 'Pasta',
+      description: 'Trennette pasta al ceppo zitoni mafalde fettucelle scialatelli linguine occhi di lupo fiorentine agnolotti. Ziti quadrefiore zitoni creste di galli orzo fettucelle conchiglie gnocchi penne lisce gnocchi spaghettini pillus calamaretti gemelli pillus.',
+      unread: false,
+      icons: []
+    },
+    {
+      title: 'Pasta ipsum dolor sit amet',
+      type: 'eID',
+      category: 'Pasta',
+      description: 'Trennette pasta al ceppo zitoni mafalde fettucelle scialatelli linguine occhi di lupo fiorentine agnolotti. Ziti quadrefiore zitoni creste di galli orzo fettucelle conchiglie gnocchi penne lisce gnocchi spaghettini pillus calamaretti gemelli pillus.',
+      unread: false,
+      icons: []
+    },
+    {
+      title: 'Pasta ipsum dolor sit amet',
+      type: 'eID',
+      category: 'Pasta',
+      description: 'Trennette pasta al ceppo zitoni mafalde fettucelle scialatelli linguine occhi di lupo fiorentine agnolotti. Ziti quadrefiore zitoni creste di galli orzo fettucelle conchiglie gnocchi penne lisce gnocchi spaghettini pillus calamaretti gemelli pillus.',
+      unread: false,
+      icons: []
+    },
+    {
+      title: 'Pasta ipsum dolor sit amet',
+      type: 'eID',
+      category: 'Pasta',
+      description: 'Trennette pasta al ceppo zitoni mafalde fettucelle scialatelli linguine occhi di lupo fiorentine agnolotti. Ziti quadrefiore zitoni creste di galli orzo fettucelle conchiglie gnocchi penne lisce gnocchi spaghettini pillus calamaretti gemelli pillus.',
+      unread: false,
+      icons: []
+    },
+    {
+      title: 'Pasta ipsum dolor sit amet',
+      type: 'eID',
+      category: 'Pasta',
+      description: 'Trennette pasta al ceppo zitoni mafalde fettucelle scialatelli linguine occhi di lupo fiorentine agnolotti. Ziti quadrefiore zitoni creste di galli orzo fettucelle conchiglie gnocchi penne lisce gnocchi spaghettini pillus calamaretti gemelli pillus.',
+      unread: false,
+      icons: []
+    },
+    {
+      title: 'Pasta ipsum dolor sit amet',
+      type: 'eID',
+      category: 'Pasta',
+      description: 'Trennette pasta al ceppo zitoni mafalde fettucelle scialatelli linguine occhi di lupo fiorentine agnolotti. Ziti quadrefiore zitoni creste di galli orzo fettucelle conchiglie gnocchi penne lisce gnocchi spaghettini pillus calamaretti gemelli pillus.',
+      unread: false,
+      icons: []
+    },
+    {
+      title: 'Pasta ipsum dolor sit amet',
+      type: 'eID',
+      category: 'Pasta',
+      description: 'Trennette pasta al ceppo zitoni mafalde fettucelle scialatelli linguine occhi di lupo fiorentine agnolotti. Ziti quadrefiore zitoni creste di galli orzo fettucelle conchiglie gnocchi penne lisce gnocchi spaghettini pillus calamaretti gemelli pillus.',
+      unread: false,
+      icons: []
+    }
+  ]
 
-  // Show or hide sidenav
-  $scope.$on('$locationChangeStart', function() {
-    // if($location.path() === '/') {
-    //   // Close the sidenav
-    //   if($scope.sidenavToggle.visible === true) {
-    //     tinkApi.sideNavToggleToggle.closeById('sideNav1');
-    //   }
-    //   // Hide the sidenav toggle
-    //   $scope.sidenavToggle.visible = false;
-    // } else {
-    //   $scope.sidenavToggle.visible = true;
-    // }
-
-  });
-
-  // Scope variables
-  // $scope.sidenavToggle = {
-  //   visible: false
-  // };
-
-  // Function that replaces anchor scroll
-  $scope.scrollTo = function scrollTo(id) {
-    $location.hash(id);
-    $anchorScroll();
+  $scope.openMenu = function(){
+    tinkApi.sideNavToggleToggle.openById('sideNav1');
   };
 
-  // $scope.openMenu = function(){
-  //   if($location.$$path !== '/') {
-  //     tinkApi.sideNavToggleToggle.openById('sideNav1');
-  //   }
-  // };
-
-  // $scope.closeMenu = function(){
-  //   if($location.$$path !== '/') {
-  //     tinkApi.sideNavToggleToggle.closeById('sideNav1');
-  //   }
-  // };
+  $scope.closeMenu = function(){
+    tinkApi.sideNavToggleToggle.closeById('sideNav1');
+  };
 
 });
