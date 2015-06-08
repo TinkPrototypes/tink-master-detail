@@ -85,19 +85,18 @@ html {
 
 	.split-pane {
 		height: 100%;
-		width: 60%;
+		width: 50%;
 
 		&:first-child {
 			border-right: 1px solid $gray-light;
 			z-index: 2;
-			width: 40%;
 		}
 	}
 
 	.split-handle {
 		bottom: 0;
 		cursor: ew-resize;
-		left: calc(40% - 3px);
+		left: calc(50% - 3px);
 		top: 0;
 		width: 5px;
 		z-index: layer("pseudo");
