@@ -2,7 +2,11 @@
 @import "../../bower_components/tink-core/dist/tink/variables";
 @import "../../bower_components/tink-core/dist/tink/functions";
 @import "../../bower_components/tink-core/dist/tink/mixins";
+@import "fixes";
 
+/**
+ * Sidenav
+ */
 html {
 	&.has-nav-left {
 		&.nav-left-can-always-close {
@@ -55,9 +59,8 @@ html {
 
 
 /**
- * Split view specific
+ * Split view
  */
-
 .main {
 	height: 100vh; // TO DO: check if this is ok to do by default
 }
@@ -122,5 +125,30 @@ html {
 		right: 0;
 		top: calc(50% - 3px);
 		z-index: layer("pseudo");
+	}
+}
+
+
+
+/**
+ * Mailbox list
+ */
+.list-mailbox {
+	@extend .list-unstyled;
+
+	> li {
+		border-bottom: 1px solid $gray-lighter;
+
+		> a {
+			color: $text-color;
+			display: block;
+			padding: rem(12 24);
+		}
+	}
+
+	&-title {
+		display: block;
+		font-weight: 600;
+		@include text-overflow();
 	}
 }
