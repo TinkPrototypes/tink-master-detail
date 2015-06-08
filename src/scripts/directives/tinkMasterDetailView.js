@@ -90,7 +90,7 @@
 	    	var pageY = pointerEventToXY(e).y;
 	    	var y = (pageY-$split.first.offset().top)/$element.main.outerHeight(true) *100;
 	    	$split.first.height(y-1+'%');
-	    	$split.bar.css('top','calc('+y+'% - 2.5px)');
+	    	$split.bar.css('top','calc('+y+'% - 3px)');
 	    	$split.second.height((100-y-1)+'%');
 	    }
 
