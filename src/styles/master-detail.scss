@@ -44,12 +44,12 @@ html {
 		}
 	}
 
-	&.ew-resize {
-		cursor: ew-resize;
+	&.col-resize {
+		cursor: col-resize;
 	}
 
-	&.ns-resize {
-		cursor: ns-resize;
+	&.row-resize {
+		cursor: row-resize;
 	}
 }
 
@@ -70,7 +70,7 @@ html {
 }
 
 .split-handle {
-	background-color: rgba(255,0,0,.32);
+	// background-color: rgba(255,0,0,.32); // Uncomment for testing its placement
 	position: absolute;
 }
 
@@ -95,7 +95,7 @@ html {
 
 	.split-handle {
 		bottom: 0;
-		cursor: ew-resize;
+		cursor: col-resize;
 		left: calc(50% - 3px);
 		top: 0;
 		width: 5px;
@@ -117,10 +117,10 @@ html {
 
 	.split-handle {
 		left: 0;
-		cursor: ns-resize;
+		cursor: row-resize;
 		height: 5px;
 		right: 0;
-		top: calc(50% - 2.5px);
+		top: calc(50% - 3px);
 		z-index: layer("pseudo");
 	}
 }

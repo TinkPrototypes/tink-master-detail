@@ -22,7 +22,7 @@
  					//set the listview
  					$element.listView = $(element);
  					addview($element.listView);
- 				}					
+ 				}
  			}
 
  			this.setVertical = function(){
@@ -38,7 +38,7 @@
  			}
 
  			function addview(element){
- 					//check if this is the first or the second view ! 
+ 					//check if this is the first or the second view !
 	 				if($split.first === null || $split.first === undefined){
 	 					$split.first = $(element).find('.split-pane');
 	 					//if we have the first view add the resize bar.
@@ -48,7 +48,7 @@
 	 				}else if($split.second === null || $split.second === undefined){
 	 					$split.second = $(element).find('.split-pane');
 	 					//Add the resize event if all the panes are added.
-	 					ctrl.addReziseEvent();	
+	 					ctrl.addReziseEvent();
 	 				}else{
 	 					console.warn('there is already a first and second element !');
 	 				}
@@ -62,7 +62,7 @@
  					//set the listview
  					$element.contentView = $(element);
  					addview($element.contentView);
- 				}	
+ 				}
  			}
 
  			 var pointerEventToXY = function(e){
@@ -98,11 +98,11 @@
  				$split.bar.bind('mousedown touchstart',function(e){
 				    $(document).bind('mousemove touchmove',function (e) {
 				    	if($direction==='vertical'){
-				    		$('html').addClass('ew-resize');
+				    		$('html').addClass('col-resize');
 				    		changeX(e);
-				    		
+
 				    	}else if($direction ==='horizontal'){
-				    		$('html').addClass('ns-resize');
+				    		$('html').addClass('row-resize');
 				    		changeY(e);
 				    	}
 				    });
@@ -111,7 +111,7 @@
  				$split.bar.bind('mouseup touchend',function(){
  					//var x = parseInt($split.bar.css('left'))/$(document).innerWidth() *100;
  					//$split.bar.css('left','calc('+x+'% + 3px)');
- 					$('html').removeClass('ns-resize').removeClass('ew-resize');
+ 					$('html').removeClass('row-resize').removeClass('col-resize');
  					$(document).unbind('mousemove touchmove');
  				})
  			}
@@ -141,7 +141,7 @@
 
 			scope.addResizer = function(){
 			 	var x = e.pageX - $('#sidebar').offset().left;
-				if (x > min && x < max && e.pageX < ($(window).width() - mainmin)) {  
+				if (x > min && x < max && e.pageX < ($(window).width() - mainmin)) {
 				  $('#sidebar').css("width", x);
 				  $('#main').css("margin-left", x);
 				}
