@@ -6,8 +6,8 @@
  		templateUrl:'templates/tinkListView.html',
  		scope:true,
  		transclude:true,
- 		link:function(){
- 			console.log('go')
+ 		link:function(scope,elem,attr,ctrl){
+ 			ctrl.setListView(elem);
  		}
  	}
  }]);

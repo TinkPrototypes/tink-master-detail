@@ -6,8 +6,8 @@
  		templateUrl:'templates/tinkContentView.html',
  		scope:true,
  		transclude:true,
- 		link:function(){
- 			console.log('content')
+ 		link:function(scope,elem,attr,ctrl){console.log('viii')
+ 			ctrl.setContentView(elem);
  		}
  	}
  }]);
