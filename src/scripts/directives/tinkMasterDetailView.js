@@ -7,7 +7,7 @@
  		transclude:'true',
  		scope:true,
  		priority:99,
- 		controller:function($scope){
+ 		controller:function($scope,$element){console.log($element);
  			var ctrl = this;
  			var $element={listView:undefined,contentView:undefined};
  			var $split={first:undefined,second:undefined,bar:undefined};
@@ -86,7 +86,15 @@
  		},
  		link:function(scope,elem,attr,ctrl){
 
- 			
+ 			if(attr.tinkSplitViewDirection){
+ 				if(attr.tinkSplitViewDirection === 'horizontal'){
+ 					elem.addClass('split-view-horizontal');
+ 				}else{
+ 					elem.addClass('split-view-vertical');
+ 				}
+ 			}else{
+ 				elem.addClass('split-view-vertical');
+ 			}
 
 			scope.$on('$destroy',function handleDestroyEvent() {
 				ctrl.removeResizeEvent();
