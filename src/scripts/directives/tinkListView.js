@@ -2,7 +2,7 @@
   angular.module('tinkApp')
  .directive('tinkListView',[function () {
  	return {
- 		require:'^tinkMasterDetailView',
+ 		require:['tinkListView','^tinkMasterDetailView'],
  		restirct:'E',
  		templateUrl:'templates/tinkListView.html',
  		scope:{
@@ -23,6 +23,9 @@
  				}
 
  				activeItem = item;
+ 				$scope.itemChange({
+
+ 				});
  			};
  			this.getActiveItem=function(){
  				return activeItem;
@@ -41,9 +44,12 @@
 
  		},
  		link:function(scope,elem,attr,ctrl){
- 			ctrl.setListView(elem);
+ 			var ctrlList = ctrl[0];
+ 			var ctrlListView = ctrl[1];
+
+ 			ctrlListView.setListView(elem);
  			scope.$watch('tinkActiveItem',function(newData,oldData){
- 				ctrl.setActiveItem(newData);
+ 				ctrlList.setActiveItem(newData);
  			});
 
  		}
