@@ -135,20 +135,55 @@ html {
  */
 .list-mailbox {
 	@extend .list-unstyled;
+	border-top: 1px solid $gray-lighter;
 
 	> li {
 		border-bottom: 1px solid $gray-lighter;
 
 		> a {
 			color: $text-color;
+			cursor: pointer;
 			display: block;
 			padding: rem(12 24);
+			text-decoration: none;
+
+			&:hover,
+			&:active,
+			&:focus {
+				background-color: rgba($black, .05);
+				color: $brand;
+			}
+
+			> div {
+				display: table;
+				width: 100%;
+
+				> span {
+					display: table-cell;
+					vertical-align: middle;
+				}
+			}
 		}
 	}
 
 	&-title {
-		display: block;
 		font-weight: 600;
-		@include text-overflow();
+	}
+
+	&-category {
+		@extend .label;
+		float: right;
+    margin: rem(1 0 0 8);
+	}
+
+	&-description {
+		display: block;
+		display: -webkit-box;
+		height: rem($line-height-computed*2);
+		line-height: $line-height-base;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 }
