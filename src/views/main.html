@@ -1,5 +1,5 @@
 <tink-master-detail-view tink-init-size="30">
-  <tink-list-view>
+  <tink-list-view data-tink-active-item>
     <div class="list-mailbox-options">
       <div class="container">
         <div class="row">
@@ -17,8 +17,8 @@
       </div>
     </div>
     <ul class="list-mailbox">
-      <li data-ng-repeat="message in messages" data-ng-class="{'unread': message.unread}">
-        <a href="javascript:void()" title="{{message.title}} - {{message.description}}">
+      <li data-ng-repeat="message in messages"  data-tink-list-item="message.id" data-ng-class="{'unread': message.unread}">
+        <a title="{{message.title}} - {{message.description}}">
           <span class="list-mailbox-title">{{message.title}}</span>
           <span class="category">{{message.category}}</span>
           <span class="list-mailbox-description">{{message.description}}</span>
