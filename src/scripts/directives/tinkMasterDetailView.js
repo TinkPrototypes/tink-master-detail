@@ -10,15 +10,15 @@
  		priority:99,
  		controller:function($scope,$element){
  			var ctrl = this;
- 			var minSize = 10;
  			var $element={listView:undefined,contentView:undefined,main:undefined};
  			var $split={first:undefined,second:undefined,bar:undefined};
  			var $direction='vertical';
+
  			this.setListView = function(element){
  				//there can only be one listview
  				if($element.listView !== null && $element.listView !== undefined){
  					//give a warning messages for the developers
- 					console.warn('There is already a list view defined!');
+ 					console.warn('there is already a list view !');
  				}else{
  					//set the listview
  					$element.listView = $(element);
@@ -27,16 +27,12 @@
  			}
 
  			this.setInitSize = function(size){
- 				size = parseInt(size);
+ 				size = parseInt(size);  
  				if(size >=10 && size <= 90 && $element.listView && $element.contentView){
  					$split.first.width(size-1+'%');
 	    		$split.second.width((100-size-1)+'%');
 	    		$split.bar.css('left','calc('+size+'% - 3px)');
  				}
- 			}
-
- 			this.setMinSize = function(size) {
- 				minSize = parseInt(size);
  			}
 
  			this.setVertical = function(){
@@ -54,13 +50,13 @@
  			function addview(element){
  					//check if this is the first or the second view !
 	 				if($split.first === null || $split.first === undefined){
-	 					$split.first = $(element).find('.split-pane');
+	 					$split.first = $(element);
 	 					//if we have the first view add the resize bar.
 	 					$split.first.css('position','relative');
 	 					$split.bar = $('<div class="split-handle"></div>');
 	 					$(element).after($split.bar);
 	 				}else if($split.second === null || $split.second === undefined){
-	 					$split.second = $(element).find('.split-pane');
+	 					$split.second = $(element);
 	 					//Add the resize event if all the panes are added.
 	 					ctrl.addReziseEvent();
 	 				}else{
@@ -95,22 +91,20 @@
 	    function changeX(e){
 	    	var pageX = pointerEventToXY(e).x;
 	    	var x = (pageX-$split.first.offset().left)/$element.main.outerWidth(true) *100;
-	    	if(x > minSize && x < 90){
+	    	if(x> 10 && x < 90){
 	    		$split.first.width(x-1+'%');
 	    		$split.bar.css('left','calc('+x+'% - 3px)');
 	    		$split.second.width((100-x-1)+'%');
 	    	}
-
+	    	
 	    }
 
 	    function changeY(e){
 	    	var pageY = pointerEventToXY(e).y;
 	    	var y = (pageY-$split.first.offset().top)/$element.main.outerHeight(true) *100;
-	    	if(y > minSize && y < 90){
-		    	$split.first.height(y-1+'%');
-		    	$split.bar.css('top','calc('+y+'% - 3px)');
-		    	$split.second.height((100-y-1)+'%');
-		    }
+	    	$split.first.height(y-1+'%');
+	    	$split.bar.css('top','calc('+y+'% - 3px)');
+	    	$split.second.height((100-y-1)+'%');
 	    }
 
  			this.addReziseEvent = function(){
@@ -156,10 +150,6 @@
 
  			if(attr.tinkInitSize){
  				ctrl.setInitSize(attr.tinkInitSize);
- 			}
-
- 			if(attr.tinkMinSize){
- 				ctrl.setMinSize(attr.tinkMinSize);
  			}
 
 			scope.$on('$destroy',function handleDestroyEvent() {

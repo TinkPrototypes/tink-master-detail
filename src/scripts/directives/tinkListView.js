@@ -10,7 +10,7 @@
  			itemChange:'&'
  		},
  		transclude:true,
-    replace:true,
+ 		replace:true,
  		controller:function($scope){
  			var ctrl = this;
  			var items = {};
