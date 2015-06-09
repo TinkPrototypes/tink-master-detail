@@ -40,3 +40,30 @@
   // });
   // $locationProvider.hashPrefix('!');
 });
+
+// .directive( 'emHeightTarget', function() {
+//     return {
+//         link: function( scope, elem, attrs ) {
+
+//             scope.$watch( '__height', function( newHeight, oldHeight ) {
+//                 elem.attr( 'style', 'margin-top: ' + (58 + newHeight) + 'px' );
+//             } );
+//         }
+//     }
+// } )
+
+// /*
+//  * Checks every $digest for height changes
+//  */
+// .directive( 'emHeightSource', function() {
+
+//     return {
+//         link: function( scope, elem, attrs ) {
+
+//             scope.$watch( function() {
+//                 scope.__height = elem.height();
+//             } );
+//         }
+//     }
+
+// } );
