@@ -48,6 +48,46 @@ html {
 		}
 	}
 
+	&.has-nav-right {
+		&.nav-right-can-always-close {
+
+			// Nav right is NOT open
+			@include mq($screen-sm) {
+				.main {
+					padding-right: 0;
+		    }
+		    .nav-right {
+		    	transform: translate(rem($nav-aside-width), 0);
+		    }
+		  }
+
+			// Nav right is open
+			&.nav-right-open {
+				@include mq($screen-sm) {
+					.main {
+			      padding-right: rem($nav-aside-width + $nav-aside-extra-body-padding);
+			    }
+			    .nav-right {
+			      transform: translate(0, 0);
+			    }
+			  }
+		  }
+
+			// Make sure the toggle is always visible
+			.nav-top {
+				&-branding {
+					> li {
+						&.toggle {
+							@include mq($screen-sm) {
+								display: block;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
 	&.col-resize {
 		cursor: col-resize;
 	}
@@ -91,7 +131,7 @@ html {
 		height: 100%;
 		width: 50%;
 
-		&:first-child {
+		&:first-of-type {
 			border-right: 1px solid $gray-light;
 			z-index: 2;
 		}
@@ -142,11 +182,34 @@ html {
 	> li {
 		border-bottom: 1px solid $gray-lighter;
 
+		&.unread {
+			> a {
+				color: $black;
+
+				.list-mailbox-title {
+					font-weight: 700;
+				}
+
+				&:before {
+					background-color: $brand-info;
+					border-radius: 50%;
+					content: '';
+					display: block;
+					height: rem(8);
+					left: rem(10);
+					position: absolute;
+					top: rem(19);
+					width: rem(8);
+				}
+			}
+		}
+
 		> a {
 			color: $text-color;
 			cursor: pointer;
 			display: block;
 			padding: rem(12 16 12 24);
+			position: relative;
 			text-decoration: none;
 
 			&:hover,

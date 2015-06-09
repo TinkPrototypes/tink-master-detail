@@ -104,11 +104,11 @@
   ]
 
   $scope.openMenu = function(){
-    tinkApi.sideNavToggleToggle.openById('sideNav1');
+    tinkApi.sideNavToggleToggle.openById('sideNavLeft');
   };
 
   $scope.closeMenu = function(){
-    tinkApi.sideNavToggleToggle.closeById('sideNav1');
+    tinkApi.sideNavToggleToggle.closeById('sideNavLeft');
   };
 
 });

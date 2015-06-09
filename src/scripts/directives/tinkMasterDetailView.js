@@ -10,6 +10,7 @@
  		priority:99,
  		controller:function($scope,$element){
  			var ctrl = this;
+ 			var minSize = 10;
  			var $element={listView:undefined,contentView:undefined,main:undefined};
  			var $split={first:undefined,second:undefined,bar:undefined};
  			var $direction='vertical';
@@ -17,7 +18,7 @@
  				//there can only be one listview
  				if($element.listView !== null && $element.listView !== undefined){
  					//give a warning messages for the developers
- 					console.warn('there is already a list view !');
+ 					console.warn('There is already a list view defined!');
  				}else{
  					//set the listview
  					$element.listView = $(element);
@@ -32,6 +33,10 @@
 	    		$split.second.width((100-size-1)+'%');
 	    		$split.bar.css('left','calc('+size+'% - 3px)');
  				}
+ 			}
+
+ 			this.setMinSize = function(size) {
+ 				minSize = parseInt(size);
  			}
 
  			this.setVertical = function(){
@@ -90,20 +95,22 @@
 	    function changeX(e){
 	    	var pageX = pointerEventToXY(e).x;
 	    	var x = (pageX-$split.first.offset().left)/$element.main.outerWidth(true) *100;
-	    	if(x> 10 && x < 90){
+	    	if(x > minSize && x < 90){
 	    		$split.first.width(x-1+'%');
 	    		$split.bar.css('left','calc('+x+'% - 3px)');
 	    		$split.second.width((100-x-1)+'%');
 	    	}
-	    	
+
 	    }
 
 	    function changeY(e){
 	    	var pageY = pointerEventToXY(e).y;
 	    	var y = (pageY-$split.first.offset().top)/$element.main.outerHeight(true) *100;
-	    	$split.first.height(y-1+'%');
-	    	$split.bar.css('top','calc('+y+'% - 3px)');
-	    	$split.second.height((100-y-1)+'%');
+	    	if(y > minSize && y < 90){
+		    	$split.first.height(y-1+'%');
+		    	$split.bar.css('top','calc('+y+'% - 3px)');
+		    	$split.second.height((100-y-1)+'%');
+		    }
 	    }
 
  			this.addReziseEvent = function(){
@@ -149,6 +156,10 @@
 
  			if(attr.tinkInitSize){
  				ctrl.setInitSize(attr.tinkInitSize);
+ 			}
+
+ 			if(attr.tinkMinSize){
+ 				ctrl.setMinSize(attr.tinkMinSize);
  			}
 
 			scope.$on('$destroy',function handleDestroyEvent() {

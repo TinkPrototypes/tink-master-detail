@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js has-nav-left nav-left-can-always-close" data-ng-app="tinkApp" data-ng-controller="MainCtrl">
+<html class="no-js has-nav-left has-nav-right nav-left-can-always-close nav-right-can-always-close nav-right-open" data-ng-app="tinkApp" data-ng-controller="MainCtrl">
  <head>
     <meta charset="utf-8">
     <title>Tink master/detail</title>
@@ -22,9 +22,11 @@
 
   <nav data-tink-top-nav data-ng-include=" 'views/top-nav.html' " class="nav-top"></nav>
 
-  <div data-tink-nav-aside data-auto-select="true" data-toggle-id="sideNav1" data-ng-include=" 'views/sidenav.html' " class="nav-left nav-aside"></div>
+  <div data-tink-nav-aside data-auto-select="true" data-toggle-id="sideNavLeft" data-ng-include=" 'views/sidenav-left.html' " class="nav-left nav-aside"></div>
 
   <div class="main" role="main" data-ng-view="" data-autoscroll="true"></div>
+
+  <div data-tink-nav-aside data-toggle-id="sideNavRight" data-ng-include=" 'views/sidenav-right.html' " class="nav-right nav-aside"></div>
 
 
   <!-- build:js(.) scripts/vendor.js -->

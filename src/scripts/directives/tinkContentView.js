@@ -7,7 +7,8 @@
  		templateUrl:'templates/tinkContentView.html',
  		scope:true,
  		transclude:true,
- 		link:function(scope,elem,attr,ctrl){console.log('viii')
+    replace:true,
+ 		link:function(scope,elem,attr,ctrl){
  			ctrl.setContentView(elem);
  		}
  	}
