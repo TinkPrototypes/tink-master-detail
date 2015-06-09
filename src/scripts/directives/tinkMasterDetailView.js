@@ -119,13 +119,13 @@
 				    		changeY(e);
 				    	}
 				    });
+				    $(document).bind('mouseup touchend',function(){
+	 					//var x = parseInt($split.bar.css('left'))/$(document).innerWidth() *100;
+	 					//$split.bar.css('left','calc('+x+'% + 3px)');
+	 					$('html').removeClass('row-resize').removeClass('col-resize');
+	 					$(document).unbind('mousemove touchmove mouseup touchend');
+	 				})
 				    return false;
- 				})
- 				$split.bar.bind('mouseup touchend',function(){
- 					//var x = parseInt($split.bar.css('left'))/$(document).innerWidth() *100;
- 					//$split.bar.css('left','calc('+x+'% + 3px)');
- 					$('html').removeClass('row-resize').removeClass('col-resize');
- 					$(document).unbind('mousemove touchmove');
  				})
  			}
 
