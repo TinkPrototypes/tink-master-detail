@@ -15,24 +15,46 @@
  			var items = {};
  			var activeItem;
  			this.setActiveItem=function(item){
- 				if(activeItem === item){
+ 				if(item === undefined || item === null){
+ 					ctrl.unselect();
+ 				}
+ 				if(!items[item.id]){
+ 					return;
+ 				}
+ 				if(activeItem.id === item.id){
  					return;
  				}
  				if(activeItem){
  					//disable item
- 				}
+ 					$(activeItem.elem).removeClass('active');
+ 				}	
+
+ 				$scope.itemChange({
+ 					$prevActive:activeItem,
+ 					$active:item
+ 				});
 
  				activeItem = item;
- 				$scope.itemChange({
+ 				$(activeItem.elem).addClass('active');
 
- 				});
+ 			};
+ 			this.unselect = function(){
+ 				if(activeItem){
+ 					$(activeItem.elem).removeClass('active');
+ 					activeItem = undefined;
+ 				}
  			};
  			this.getActiveItem=function(){
  				return activeItem;
  			};
+ 			this.setActiveId = function(id){
+ 				if(items[id]){
+ 					this.setActiveItem(items[id]);
+ 				}
+ 			}
  			this.addItem=function(item){
  				if(!items[item.id]){
- 					items[item.id] = {element:item.element,active:false};
+ 					items[item.id] = item;
  				}
  			};
  			this.removeItem=function(){
@@ -49,7 +71,7 @@
 
  			ctrlListView.setListView(elem);
  			scope.$watch('tinkActiveItem',function(newData,oldData){
- 				ctrlList.setActiveItem(newData);
+ 				ctrlList.setActiveId(newData);
  			});
 
  		}

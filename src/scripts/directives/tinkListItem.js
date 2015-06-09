@@ -14,12 +14,13 @@
  			}else{
  				return;
  			}
+ 			var object = {id:id,elem:$(elem)};
 
  			scope.$on('destroy',function(){
  				ctrl.removeItem(id);
  			})
  			$(elem).bind('click',function(){
- 				ctrl.setActiveItem(id);
+ 				ctrl.setItem(object);
  			})
  		}
  	}
