@@ -63,6 +63,7 @@ html {
  */
 .main {
 	height: 100vh; // TO DO: check if this is ok to do by default
+	overflow: hidden;
 }
 
 %split-view {
@@ -136,6 +137,7 @@ html {
 .list-mailbox {
 	@extend .list-unstyled;
 	border-top: 1px solid $gray-lighter;
+	// padding-top: rem(56);
 
 	> li {
 		border-bottom: 1px solid $gray-lighter;
@@ -144,7 +146,7 @@ html {
 			color: $text-color;
 			cursor: pointer;
 			display: block;
-			padding: rem(12 24);
+			padding: rem(12 16 12 24);
 			text-decoration: none;
 
 			&:hover,
@@ -164,6 +166,12 @@ html {
 				}
 			}
 		}
+	}
+
+	&-options {
+		background-color: $gray-lighter;
+		padding: 10px 0 8px;
+		width: 100%;
 	}
 
 	&-title {
