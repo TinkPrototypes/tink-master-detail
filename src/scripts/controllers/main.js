@@ -9,7 +9,7 @@
  */
  angular.module('tinkApp')
  .controller('MainCtrl', function ($scope, $rootScope, tinkApi) {
-
+  $scope.activeItem ={id:2};
   $scope.messages = [
     {
       title: 'Pasta ipsum dolor sit amet',

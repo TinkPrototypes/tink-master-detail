@@ -15,14 +15,14 @@
  			var ctrl = this;
  			var items = {};
  			var activeItem;
- 			this.setActiveItem=function(item){
+ 			function setElementActive(item){
  				if(item === undefined || item === null){
  					ctrl.unselect();
  				}
  				if(!items[item.id]){
  					return;
  				}
- 				if(activeItem.id === item.id){
+ 				if(activeItem && activeItem.id === item.id){
  					return;
  				}
  				if(activeItem){
@@ -48,14 +48,23 @@
  			this.getActiveItem=function(){
  				return activeItem;
  			};
- 			this.setActiveId = function(id){
+ 			this.setElementActive = function(id){
  				if(items[id]){
- 					this.setActiveItem(items[id]);
+ 					setElementActive(items[id]);
+ 				}else{
+ 					activeItem = {id:id};
  				}
+ 			}
+ 			this.setActiveItem = function(object){
+ 				$scope.tinkActiveItem = object.id;
  			}
  			this.addItem=function(item){
  				if(!items[item.id]){
  					items[item.id] = item;
+ 					if(activeItem && item.id === activeItem.id){
+ 						activeItem = null;
+ 						ctrl.setElementActive(item.id);
+ 					}
  				}
  			};
  			this.removeItem=function(){
@@ -72,7 +81,7 @@
 
  			ctrlListView.setListView(elem);
  			scope.$watch('tinkActiveItem',function(newData,oldData){
- 				ctrlList.setActiveId(newData);
+ 				ctrlList.setElementActive(newData);
  			});
 
  		}

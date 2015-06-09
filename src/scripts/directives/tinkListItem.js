@@ -9,18 +9,19 @@
  		},
  		link:function(scope,elem,attr,ctrl){
  			var id = scope.tinkListItem;
+ 			var object = {id:id,elem:$(elem)};
  			if(id){
- 				ctrl.addItem(id);
+ 				ctrl.addItem(object);
  			}else{
  				return;
  			}
- 			var object = {id:id,elem:$(elem)};
+ 			
 
  			scope.$on('destroy',function(){
- 				ctrl.removeItem(id);
+ 				ctrl.removeItem(object);
  			})
  			$(elem).bind('click',function(){
- 				ctrl.setItem(object);
+ 				ctrl.setElementActive(id);
  			})
  		}
  	}
