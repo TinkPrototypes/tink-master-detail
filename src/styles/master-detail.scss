@@ -23,7 +23,6 @@ html {
  */
 .main {
 	height: 100vh; // TO DO: check if this is ok to do by default
-	overflow: hidden;
 }
 
 %split-view {
@@ -136,6 +135,23 @@ html {
 			}
 		}
 
+		&.active {
+			> a {
+				background-color: rgba($brand-light, .16);
+				color: $brand;
+
+				&:hover,
+				&:active,
+				&:focus {
+					background-color: rgba($brand-light, .16);
+				}
+
+				.list-mailbox-description {
+					color: $brand;
+				}
+			}
+		}
+
 		> a {
 			color: $text-color;
 			cursor: pointer;
@@ -149,6 +165,10 @@ html {
 			&:focus {
 				background-color: rgba($black, .05);
 				color: $brand;
+
+				.list-mailbox-description {
+					color: $brand;
+				}
 			}
 
 			> div {
@@ -159,6 +179,10 @@ html {
 					display: table-cell;
 					vertical-align: middle;
 				}
+			}
+
+			.list-mailbox-description {
+				color: $gray;
 			}
 		}
 	}
