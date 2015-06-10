@@ -54,8 +54,8 @@
  					activeItem = {id:id};
  				}
  			}
- 			this.setActiveItem = function(object){
- 				$scope.tinkActiveItem = object.id;
+ 			this.setActiveItem = function(id){
+ 				$scope.tinkActiveItem = id;
  			}
  			this.addItem=function(item){
  				if(!items[item.id]){

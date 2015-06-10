@@ -22,7 +22,7 @@
  			})
  			$(elem).bind('click',function(){
  				scope.$apply(function(){
- 					ctrl.setElementActive(id);
+ 					ctrl.setActiveItem(id);
  				})
  			})
  		}
