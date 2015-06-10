@@ -27,10 +27,10 @@
  			}
 
  			this.setInitSize = function(size){
- 				size = parseInt(size);
+ 				size = parseInt(size);  
  				if(size >=10 && size <= 90 && $element.listView && $element.contentView){
- 					$split.first.width(size-1+'%');
-	    		$split.second.width((100-size-1)+'%');
+ 				$split.first.width(size-1+'%');
+	    		$split.second.width((100-size)+'%');
 	    		$split.bar.css('left','calc('+size+'% - 3px)');
  				}
  			}
@@ -51,8 +51,6 @@
  					//check if this is the first or the second view !
 	 				if($split.first === null || $split.first === undefined){
 	 					$split.first = $(element);
-	 					//if we have the first view add the resize bar.
-	 					$split.first.css('position','relative');
 	 					$split.bar = $('<div class="split-handle"></div>');
 	 					$(element).after($split.bar);
 	 				}else if($split.second === null || $split.second === undefined){
@@ -94,9 +92,9 @@
 	    	if(x> 10 && x < 90){
 	    		$split.first.width(x-1+'%');
 	    		$split.bar.css('left','calc('+x+'% - 3px)');
-	    		$split.second.width((100-x-1)+'%');
+	    		$split.second.width((100-x)+'%');
 	    	}
-
+	    	
 	    }
 
 	    function changeY(e){
@@ -104,7 +102,7 @@
 	    	var y = (pageY-$split.first.offset().top)/$element.main.outerHeight(true) *100;
 	    	$split.first.height(y-1+'%');
 	    	$split.bar.css('top','calc('+y+'% - 3px)');
-	    	$split.second.height((100-y-1)+'%');
+	    	$split.second.height((100-y)+'%');
 	    }
 
  			this.addReziseEvent = function(){
@@ -118,12 +116,14 @@
 				    		$('html').addClass('row-resize');
 				    		changeY(e);
 				    	}
+				    	return false;
 				    });
 				    $(document).bind('mouseup touchend',function(){
 	 					//var x = parseInt($split.bar.css('left'))/$(document).innerWidth() *100;
 	 					//$split.bar.css('left','calc('+x+'% + 3px)');
 	 					$('html').removeClass('row-resize').removeClass('col-resize');
 	 					$(document).unbind('mousemove touchmove mouseup touchend');
+	 					return false;
 	 				})
 				    return false;
  				})
