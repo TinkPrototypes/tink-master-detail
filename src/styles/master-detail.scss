@@ -218,11 +218,25 @@ html {
 /**
  * Nav right
  */
-.nav-right {
-	.toggle {
+.right-menu-toggle {
+	position: absolute;
+	left: rem(-38);
+	top: 0;
+	z-index: 10;
+
+	.btn {
+		// border-color: #e1e1e1;
 		border-right-width: 0;
 		border-top-right-radius: 0;
 		border-bottom-right-radius: 0;
-		transform: translate(rem(-36),0);
+		color: $text-color;
+		width: rem(40);
+
+		&:hover,
+		&:active,
+		&:focus {
+			background-color: $btn-default-bg;
+			color: $brand;
+		}
 	}
 }
