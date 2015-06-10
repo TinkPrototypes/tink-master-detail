@@ -1,6 +1,6 @@
 <tink-master-detail-view tink-init-size="30" tink-min-size="27">
 
-  <tink-list-view tink-active-item="activeItem.id">
+  <tink-list-view data-item-change="changeD($active)" tink-active-item="activeItem.id">
     <div class="list-mailbox-options">
       <div class="container">
         <div class="row">
@@ -34,13 +34,13 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
-          <h1>Hello!</h1>
-          <p>Pasta ipsum dolor sit amet zitoni cencioni gigli fusilli lunghi fiori sacchettoni taglierini acini di pepe. Trennette pasta al ceppo zitoni mafalde fettucelle scialatelli linguine occhi di lupo fiorentine agnolotti. Ziti quadrefiore zitoni creste di galli orzo fettucelle conchiglie gnocchi penne lisce gnocchi spaghettini pillus calamaretti gemelli pillus.</p>
-          <p>Lasagne spaghetti alla chitarra ziti lanterne conchiglie. Gigli rigatoncini fusilli lunghi calamarata maltagliati capunti trenne linguine. Mafaldine pappardelle sagnarelli paccheri agnolotti trofie spaghetti sagnarelli fedelini fusilli lunghi casarecce cencioni. Tripoline corzetti fettucelle capunti tortelloni cavatappi ditalini zitoni tuffoli foglie d'ulivo mafalde sagne 'ncannulate.</p>
-          <p>Sagnarelli pillus farfalle fettucelle calamarata tuffoli sorprese lisce vermicelli trofie lagane farfalloni cencioni. Ricciolini capunti fiorentine ditalini sorprese lisce. Fagioloni foglie d'ulivo capunti fusilli bucati fettuce tortellini timpano quadrefiore maltagliati tagliatelle. Perciatelli tripoline orzo torchio bavettine marziani penne rigate. Strozzapreti capelli d'angelo elicoidali spaghetti sacchettini sorprese quadrefiore quadrefiore. Pici scialatelli trenne mezzi bombardoni cencioni.</p>
-          <p>Pasta ipsum dolor sit amet zitoni cencioni gigli fusilli lunghi fiori sacchettoni taglierini acini di pepe. Trennette pasta al ceppo zitoni mafalde fettucelle scialatelli linguine occhi di lupo fiorentine agnolotti. Ziti quadrefiore zitoni creste di galli orzo fettucelle conchiglie gnocchi penne lisce gnocchi spaghettini pillus calamaretti gemelli pillus.</p>
-          <p>Lasagne spaghetti alla chitarra ziti lanterne conchiglie. Gigli rigatoncini fusilli lunghi calamarata maltagliati capunti trenne linguine. Mafaldine pappardelle sagnarelli paccheri agnolotti trofie spaghetti sagnarelli fedelini fusilli lunghi casarecce cencioni. Tripoline corzetti fettucelle capunti tortelloni cavatappi ditalini zitoni tuffoli foglie d'ulivo mafalde sagne 'ncannulate.</p>
-          <p>Sagnarelli pillus farfalle fettucelle calamarata tuffoli sorprese lisce vermicelli trofie lagane farfalloni cencioni. Ricciolini capunti fiorentine ditalini sorprese lisce. Fagioloni foglie d'ulivo capunti fusilli bucati fettuce tortellini timpano quadrefiore maltagliati tagliatelle. Perciatelli tripoline orzo torchio bavettine marziani penne rigate. Strozzapreti capelli d'angelo elicoidali spaghetti sacchettini sorprese quadrefiore quadrefiore. Pici scialatelli trenne mezzi bombardoni cencioni.</p>
+          <div ng-if="selectedMessage !== undefined">
+            <h1>{{selectedMessage.title}}</h1>
+            <div ng-bind-html="selectedMessage.message"></div>
+          </div>
+           <div ng-if="selectedMessage === undefined">
+            Selecteed een item link.
+          </div>            
           <button ng-click="activeItem.id=activeItem.id+1;">go higher</button>
         </div>
       </div>

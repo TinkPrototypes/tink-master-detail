@@ -31,8 +31,7 @@
  				}	
 
  				$scope.itemChange({
- 					$prevActive:activeItem,
- 					$active:item
+ 					$active:item.id
  				});
 
  				activeItem = item;

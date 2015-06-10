@@ -21,7 +21,9 @@
  				ctrl.removeItem(object);
  			})
  			$(elem).bind('click',function(){
- 				ctrl.setElementActive(id);
+ 				scope.$apply(function(){
+ 					ctrl.setElementActive(id);
+ 				})
  			})
  		}
  	}
