@@ -27,7 +27,7 @@
  			}
 
  			this.setInitSize = function(size){
- 				size = parseInt(size);  
+ 				size = parseInt(size);
  				if(size >=10 && size <= 90 && $element.listView && $element.contentView){
  					$split.first.width(size-1+'%');
 	    		$split.second.width((100-size-1)+'%');
@@ -96,7 +96,7 @@
 	    		$split.bar.css('left','calc('+x+'% - 3px)');
 	    		$split.second.width((100-x-1)+'%');
 	    	}
-	    	
+
 	    }
 
 	    function changeY(e){

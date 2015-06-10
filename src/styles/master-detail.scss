@@ -258,3 +258,15 @@ html {
 		text-overflow: ellipsis;
 	}
 }
+
+/**
+ * Nav right
+ */
+.nav-right {
+	.toggle {
+		border-right-width: 0;
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+		transform: translate(rem(-36),0);
+	}
+}
