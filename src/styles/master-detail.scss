@@ -110,6 +110,7 @@ html {
 	height: 100%;
 	overflow: hidden;
 	position: relative;
+	width: 100%;
 	z-index: layer("base");
 }
 
@@ -120,20 +121,25 @@ html {
 
 .split-pane {
 	display: block;
-	float: left;
 	overflow: auto;
+	position: absolute;
 }
 
 .split-view-vertical {
 	@extend %split-view;
 
 	.split-pane {
-		height: 100%;
+		bottom: 0;
+		top: 0;
 		width: 50%;
 
 		&:first-of-type {
 			border-right: 1px solid $gray-light;
-			z-index: 2;
+			left: 0;
+		}
+
+		&:last-of-type {
+			right: 0;
 		}
 	}
 
@@ -152,10 +158,16 @@ html {
 
 	.split-pane {
 		height: 50%;
-		width: 100%;
+		left: 0;
+		right: 0;
 
 		&:first-child {
 			border-bottom: 1px solid $gray-light;
+			top: 0;
+		}
+
+		&:last-child {
+			bottom: 0;
 		}
 	}
 
