@@ -156,7 +156,7 @@ html {
 			color: $text-color;
 			cursor: pointer;
 			display: block;
-			padding: rem(12 16 12 24);
+			padding: rem(12 12 12 24);
 			position: relative;
 			text-decoration: none;
 
@@ -172,13 +172,8 @@ html {
 			}
 
 			> div {
-				display: table;
+				clear: both;
 				width: 100%;
-
-				> span {
-					display: table-cell;
-					vertical-align: middle;
-				}
 			}
 
 			.list-mailbox-description {
@@ -193,7 +188,14 @@ html {
 		width: 100%;
 	}
 
+	&-icons {
+		float: left;
+    margin: rem(-1 4 0 0);
+	}
+
 	&-title {
+		@include text-overflow();
+		display: block;
 		font-weight: 600;
 	}
 
@@ -204,16 +206,19 @@ html {
 	}
 
 	&-description {
+		@include text-overflow();
 		display: block;
-		display: -webkit-box;
-		height: rem($line-height-computed*2);
-		line-height: $line-height-base;
-		-webkit-line-clamp: 2;
-		-webkit-box-orient: vertical;
-		overflow: hidden;
-		text-overflow: ellipsis;
+		// display: -webkit-box;
+		// height: auto;
+		// line-height: $line-height-base;
+		// max-height: rem($line-height-computed*2);
+		// -webkit-line-clamp: 2;
+		// -webkit-box-orient: vertical;
+		// overflow: hidden;
+		// text-overflow: ellipsis;
 	}
 }
+
 
 /**
  * Nav right
@@ -222,7 +227,7 @@ html {
 	position: absolute;
 	left: rem(-38);
 	top: 0;
-	z-index: 10;
+	z-index: layer('pseudo');
 
 	.btn {
 		// border-color: #e1e1e1;
@@ -230,6 +235,8 @@ html {
 		border-top-right-radius: 0;
 		border-bottom-right-radius: 0;
 		color: $text-color;
+		line-height: 1;
+		font-size: 1.5em;
 		width: rem(40);
 
 		&:hover,
@@ -237,6 +244,23 @@ html {
 		&:focus {
 			background-color: $btn-default-bg;
 			color: $brand;
+		}
+	}
+}
+
+html {
+	.fa-ellipsis-h {
+		display: block;
+	}
+	.fa-close {
+		display: none;
+	}
+	&.nav-right-open {
+		.fa-ellipsis-h {
+			display: none;
+		}
+		.fa-close {
+			display: block;
 		}
 	}
 }
