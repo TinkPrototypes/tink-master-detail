@@ -11,7 +11,7 @@
  		},
  		transclude:true,
  		replace:true,
- 		controller:function($scope){
+ 		controller:function($scope,$rootScope){
  			var ctrl = this;
  			var items = {};
  			var activeItem;
@@ -33,6 +33,8 @@
  				$scope.itemChange({
  					$active:item.id
  				});
+
+ 				$rootScope.$broadcast('tink-list-item-click',{id:item.id,item:item});
 
  				activeItem = item;
  				$(activeItem.elem).addClass('active');
