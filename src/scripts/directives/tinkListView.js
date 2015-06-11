@@ -11,6 +11,7 @@
  		},
  		transclude:true,
  		replace:true,
+ 		terminal: true,
  		controller:function($scope,$rootScope){
  			var ctrl = this;
  			var items = {};
@@ -82,9 +83,11 @@
  						activeItem = null;
  						ctrl.setElementActive(item.id);
  					}
+ 				}else if(items[item.id]){
+
  				}
  			};
- 			this.removeItem=function(){
+ 			this.removeItem=function(item){
  				if(items[item.id]){
  					delete items[item.id];
  				}

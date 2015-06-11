@@ -8,7 +8,7 @@
  * Controller of the tinkApp
  */
  angular.module('tinkApp')
- .controller('MainCtrl', function ($scope, $rootScope, tinkApi,$filter) {
+ .controller('MainCtrl', function ($scope, $rootScope, tinkApi,$filter,$timeout) {
   $scope.activeItem = {id:1};
   $scope.selectedMessage = undefined;
   $scope.changeD = function(nex,prev){
@@ -20,7 +20,9 @@
       $scope.selectedMessage = obj[0];
     }
   }
-  $scope.messages = [
+  $timeout(function(){
+
+    $scope.messages = [
     {
       title: 'Tink meeting',
       eid: true,
@@ -102,6 +104,13 @@
       icons: []
     }
   ]
+
+  },1500)
+
+$scope.changeData = function(){
+  $scope.messages[0].title='okeee change';
+}
+  
 
   $scope.openMenu = function(){
     tinkApi.sideNavToggle.openById('sideNavLeft');
