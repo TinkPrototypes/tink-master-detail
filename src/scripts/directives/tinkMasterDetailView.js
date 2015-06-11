@@ -9,8 +9,9 @@
  		scope:true,
  		controller:function($scope,$element){
  			var ctrl = this;
- 			var $element={listView:undefined,contentView:undefined,main:undefined};
+ 			//var $element={listView:undefined,contentView:undefined,main:undefined};
  			var $split={first:undefined,second:undefined,bar:undefined};
+ 			var $minWidth=undefined;
  			var $direction='vertical';
 
  			this.addView=function(element){
@@ -23,7 +24,6 @@
 
  			this.removeView=function(element){
  				if($($split.first).get(0) === $(element).get(0)){
-
  					$split.first = undefined;
  					$split.bar.remove();
  					$split.bar = undefined;
@@ -31,8 +31,9 @@
  					$split.second = undefined;
  				}
  			}
+
  			this.setInitSize = function(size){
- 				size = parseInt(size);  
+ 				/*size = parseInt(size);  
  				if(size >=10 && size <= 90 && $split.first && $split.second){
  					if($direction === 'horizontal'){
  						$split.first.height(size-1+'%');
@@ -43,7 +44,8 @@
 	    				$split.second.width((100-size)+'%');
 	    				$split.bar.css('left','calc('+size+'% - 3px)');
  					} 					
- 				}
+ 				}*/
+ 				
  			}
 
  			this.setVertical = function(){
@@ -59,18 +61,26 @@
  			}
 
  			function addview(element){
+ 					var minWidth = parseInt($(element).css('min-width')) ? parseInt($(element).css('min-width')) : undefined;
  					//check if this is the first or the second view !
 	 				if($split.first === null || $split.first === undefined){
 	 					$split.first = $(element);
 	 					$split.bar = $('<div class="split-handle"></div>');
 	 					$(element).after($split.bar);
+	 					if(minWidth){
+		 					$minWidth = {el:'first',minwidth:minWidth};
+		 				}
 	 				}else if($split.second === null || $split.second === undefined){
 	 					$split.second = $(element);
 	 					//Add the resize event if all the panes are added.
+	 					if(minWidth && $minWidth.el !== 'first'){
+		 					$minWidth = {el:'first',minwidth:minWidth};
+		 				}
 	 					ctrl.addReziseEvent();
 	 				}else{
 	 					console.warn('there is already a first and second element !');
 	 				}
+	 				console.log(minWidth);
  			}
 
  			 var pointerEventToXY = function(e){
