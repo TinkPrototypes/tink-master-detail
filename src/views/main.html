@@ -1,68 +1,71 @@
-<tink-master-detail-view tink-init-size="30" tink-min-size="27" tink-split-view-direction="vertical">
+<tink-master-detail-view tink-init-size="30" tink-min-size="180" tink-split-view-direction="vertical">
 
   <tink-list-view data-item-change="changeD($active)" tink-active-item="activeItem.id">
-    <div class="list-mailbox-options">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="radio checkbox-inline">
-              <input type="radio" id="docsradio1" name="docsradio" value="" checked="checked">
-              <label for="docsradio1">Alle documenten</label>
-            </div>
-            <div class="radio checkbox-inline">
-              <input type="radio" id="docsradio2" name="docsradio" value="">
-              <label for="docsradio2">Zonder eID</label>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          <tink-master-detail-view tink-init-size="10" tink-split-view-direction="horizontal">
+            <tink-list-view>
+              <div class="list-mailbox-options">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <div class="radio checkbox-inline">
+                        <input type="radio" id="docsradio1" name="docsradio" value="" checked="checked">
+                        <label for="docsradio1">Alle documenten</label>
+                      </div>
+                      <div class="radio checkbox-inline">
+                        <input type="radio" id="docsradio2" name="docsradio" value="">
+                        <label for="docsradio2">Zonder eID</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </tink-list-view>
+            <tink-content-view>
+              <ul class="list-mailbox">
+                <li data-ng-repeat="message in messages"  data-tink-list-item="message.id" data-ng-class="{'unread': message.unread}">
+                  <a title="{{message.title}} - {{message.description}}">
+                    <div>
+                      <span class="list-mailbox-icons"><span class="badge-warning" data-ng-if="message.eid">eID</span></span>
+                      <span class="list-mailbox-category">{{message.category}}</span>
+                      <span class="list-mailbox-title">{{message.title}}</span>
+                    </div>
+                    <span class="list-mailbox-description">{{message.description}}</span>
+                  </a>
+                </li>
+              </ul>
+            </tink-content-view>
 
-    <ul class="list-mailbox">
-      <li data-ng-repeat="message in messages"  data-tink-list-item="message.id" data-ng-class="{'unread': message.unread}">
-        <a title="{{message.title}} - {{message.description}}">
-          <div>
-            <span class="list-mailbox-icons"><span class="badge-warning" data-ng-if="message.eid">eID</span></span>
-            <span class="list-mailbox-category">{{message.category}}</span>
-            <span class="list-mailbox-title">{{message.title}}</span>
-          </div>
-          <span class="list-mailbox-description">{{message.description}}</span>
-        </a>
-      </li>
-    </ul>
   </tink-list-view>
-    <tink-content-view>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          <div ng-if="selectedMessage !== undefined">
-            <h1>{{selectedMessage.title}}</h1>
-            <div ng-bind-html="selectedMessage.message"></div>
-          </div>
-           <div ng-if="selectedMessage === undefined">
-            Selecteed een item link.
-          </div>
-          <button ng-click="activeItem.id=activeItem.id+1;">go higher</button>
-          <button ng-click="changeData()">change title</button>
-        </div>
-      </div>
-    </div>
-  </tink-content-view>
   <tink-content-view>
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-12">
-          <div ng-if="selectedMessage !== undefined">
-            <h1>{{selectedMessage.title}}</h1>
-            <div ng-bind-html="selectedMessage.message"></div>
-          </div>
-           <div ng-if="selectedMessage === undefined">
-            Selecteed een item link.
-          </div>
-          <button ng-click="activeItem.id=activeItem.id+1;">go higher</button>
-          <button ng-click="changeData()">change title</button>
-        </div>
-      </div>
-    </div>
+          <tink-master-detail-view tink-init-size="89" tink-split-view-direction="horizontal">
+            <tink-list-view>
+              <div class="container">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <div ng-if="selectedMessage !== undefined">
+                      <h1>{{selectedMessage.title}}</h1>
+                      <div ng-bind-html="selectedMessage.message"></div>
+                    </div>
+                     <div ng-if="selectedMessage === undefined">
+                      Selecteed een item link.
+                    </div>
+                    <button ng-click="activeItem.id=activeItem.id+1;">go higher</button>
+                  </div>
+                </div>
+              </div>
+            </tink-list-view>
+            <tink-content-view>
+              <div class="container">
+                <div class="row vertical-align-middle margin-bottom margin-top">
+                  <div class="col-xs-6">
+                    <button class="btn-primary">Handtekenen</button>
+                  </div>
+                  <div class="col-xs-6 text-right">
+                    Te ondertekenen tegen: <strong>vandaag</strong>
+                  </div>
+                </div>
+              </div>
+            </tink-content-view>
+          </tink-master-detail-view>
   </tink-content-view>
 </tink-master-detail-view>

@@ -47,7 +47,7 @@ html {
 .split-view-vertical {
 	@extend %split-view;
 
-	.split-pane {
+	> .split-pane {
 		bottom: 0;
 		top: 0;
 		width: 50%;
@@ -62,7 +62,7 @@ html {
 		}
 	}
 
-	.split-handle {
+	> .split-handle {
 		bottom: 0;
 		cursor: col-resize;
 		left: calc(50% - 3px);
@@ -75,7 +75,7 @@ html {
 .split-view-horizontal {
 	@extend %split-view;
 
-	.split-pane {
+	> .split-pane {
 		height: 50%;
 		left: 0;
 		right: 0;
@@ -90,7 +90,7 @@ html {
 		}
 	}
 
-	.split-handle {
+	> .split-handle {
 		left: 0;
 		cursor: row-resize;
 		height: 5px;
@@ -184,6 +184,8 @@ html {
 
 	&-options {
 		background-color: $gray-lighter;
+		height: 100%;
+		min-width: rem(250);
 		padding: 10px 0 8px;
 		width: 100%;
 	}
@@ -264,3 +266,16 @@ html {
 		}
 	}
 }
+
+.left-pane {
+	min-width: rem(180);
+}
+
+// .signature {
+// 	background-color: $white;
+// 	border-top: 1px solid $gray-light;
+// 	bottom: 0;
+// 	left: 0;
+// 	position: absolute;
+// 	right: 0;
+// }
