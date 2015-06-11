@@ -9,7 +9,13 @@
  		transclude:true,
     	replace:true,
  		link:function(scope,elem,attr,ctrl){
- 			ctrl.setContentView(elem);
+ 			ctrl.addView(elem);
+ 			elem.on('$destroy', function () {
+			  	scope.$destroy();
+			});
+ 			scope.$on('$destroy',function(){
+ 				ctrl.removeView($(elem));
+ 			});
  		}
  	}
  }]);

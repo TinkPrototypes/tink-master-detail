@@ -7,28 +7,33 @@
  		transclude:'true',
  		replace:true,
  		scope:true,
- 		priority:99,
  		controller:function($scope,$element){
  			var ctrl = this;
  			var $element={listView:undefined,contentView:undefined,main:undefined};
  			var $split={first:undefined,second:undefined,bar:undefined};
  			var $direction='vertical';
 
- 			this.setListView = function(element){
- 				//there can only be one listview
- 				if($element.listView !== null && $element.listView !== undefined){
- 					//give a warning messages for the developers
- 					console.warn('there is already a list view !');
+ 			this.addView=function(element){
+ 				if($split.first === undefined || $split.second === undefined){
+ 					addview($(element));
  				}else{
- 					//set the listview
- 					$element.listView = $(element);
- 					addview($element.listView);
+ 					$(element).remove();
  				}
  			}
 
+ 			this.removeView=function(element){
+ 				if($($split.first).get(0) === $(element).get(0)){
+
+ 					$split.first = undefined;
+ 					$split.bar.remove();
+ 					$split.bar = undefined;
+ 				}else if($($split.second).get(0) === $(element).get(0)){
+ 					$split.second = undefined;
+ 				}
+ 			}
  			this.setInitSize = function(size){
  				size = parseInt(size);  
- 				if(size >=10 && size <= 90 && $element.listView && $element.contentView){
+ 				if(size >=10 && size <= 90 && $split.first && $split.second){
  					if($direction === 'horizontal'){
  						$split.first.height(size-1+'%');
 	    				$split.second.height((100-size)+'%');
@@ -66,17 +71,6 @@
 	 				}else{
 	 					console.warn('there is already a first and second element !');
 	 				}
- 			}
- 			this.setContentView = function(element){
- 				//there can only be one listview
- 				if($element.contentView !== null && $element.contentView !== undefined){
- 					//give a warning messages for the developers
- 					console.warn('there is already a content view !');
- 				}else{
- 					//set the listview
- 					$element.contentView = $(element);
- 					addview($element.contentView);
- 				}
  			}
 
  			 var pointerEventToXY = function(e){

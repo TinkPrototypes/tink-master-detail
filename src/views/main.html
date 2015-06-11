@@ -31,6 +31,23 @@
       </li>
     </ul>
   </tink-list-view>
+    <tink-content-view>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div ng-if="selectedMessage !== undefined">
+            <h1>{{selectedMessage.title}}</h1>
+            <div ng-bind-html="selectedMessage.message"></div>
+          </div>
+           <div ng-if="selectedMessage === undefined">
+            Selecteed een item link.
+          </div>
+          <button ng-click="activeItem.id=activeItem.id+1;">go higher</button>
+          <button ng-click="changeData()">change title</button>
+        </div>
+      </div>
+    </div>
+  </tink-content-view>
   <tink-content-view>
     <div class="container">
       <div class="row">

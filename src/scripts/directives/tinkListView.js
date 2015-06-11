@@ -99,7 +99,13 @@
  			var ctrlList = ctrl[0];
  			var ctrlListView = ctrl[1];
 
- 			ctrlListView.setListView(elem);
+ 			ctrlListView.addView(elem);
+ 			elem.on('$destroy', function () {
+			  	scope.$destroy();
+			});
+ 			scope.$on('$destroy',function(){
+ 				ctrl.removeView($(elem));
+ 			});
  			scope.$watch('tinkActiveItem',function(newData,oldData){
  				ctrlList.setElementActive(newData);
  			});
