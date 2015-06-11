@@ -15,11 +15,28 @@
  			var ctrl = this;
  			var items = {};
  			var activeItem;
- 			function setElementActive(item){
- 				if(item === undefined || item === null){
- 					ctrl.unselect();
+
+ 			function callChange(item){
+
+ 				var callData = undefined;
+ 				if(item){
+ 					callData = {
+ 						$active:item.id
+ 					};
  				}
- 				if(!items[item.id]){
+
+ 				$scope.itemChange(callData);
+
+ 				$rootScope.$broadcast('tink-list-item-click',callData);
+ 			}
+ 			function setElementActive(item){
+ 				if(item === undefined || item === null || !items[item.id]){
+
+ 					if(activeItem){
+ 						$scope.tinkActiveItem = undefined;
+ 						ctrl.unselect();
+ 					}
+ 					activeItem = item;							
  					return;
  				}
  				if(activeItem && activeItem.id === item.id){
@@ -30,11 +47,7 @@
  					$(activeItem.elem).removeClass('active');
  				}	
 
- 				$scope.itemChange({
- 					$active:item.id
- 				});
-
- 				$rootScope.$broadcast('tink-list-item-click',{id:item.id,item:item});
+ 				callChange(item);
 
  				activeItem = item;
  				$(activeItem.elem).addClass('active');
@@ -44,6 +57,7 @@
  				if(activeItem){
  					$(activeItem.elem).removeClass('active');
  					activeItem = undefined;
+ 					callChange(activeItem);
  				}
  			};
  			this.getActiveItem=function(){
@@ -52,8 +66,10 @@
  			this.setElementActive = function(id){
  				if(items[id]){
  					setElementActive(items[id]);
+ 				}else if(id){
+ 					setElementActive({id:id});
  				}else{
- 					activeItem = {id:id};
+ 					setElementActive(undefined);
  				}
  			}
  			this.setActiveItem = function(id){

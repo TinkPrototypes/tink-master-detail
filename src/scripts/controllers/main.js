@@ -12,10 +12,13 @@
   $scope.activeItem = {id:1};
   $scope.selectedMessage = undefined;
   $scope.changeD = function(nex,prev){
-    console.log(nex);
-    var obj = $filter('filter')($scope.messages, { id: nex})[0];
-    obj.unread = false;
-    $scope.selectedMessage = obj;
+    var obj = $filter('filter')($scope.messages, { id: nex});
+    if(obj.length === $scope.messages.length && nex === undefined){
+      $scope.selectedMessage = undefined;
+    }else{
+      obj[0].unread = false;
+      $scope.selectedMessage = obj[0];
+    }
   }
   $scope.messages = [
     {
