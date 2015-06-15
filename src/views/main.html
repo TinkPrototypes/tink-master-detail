@@ -45,7 +45,6 @@
                     <div ng-if="selectedMessage !== undefined">
                       <h1>{{selectedMessage.title}}</h1>
                       <div ng-bind-html="selectedMessage.message"></div>
-                      <button ng-click="activeItem.id=activeItem.id+1;">go higher</button>
                     </div>
                     <div ng-if="selectedMessage === undefined">
                       <p class="mailbox-loader text-center"><i class="fa fa-refresh fa-spin"><span class="sr-only">Loading…</span></i></p>
@@ -59,7 +58,7 @@
                 <div class="row vertical-align-middle margin-bottom margin-top">
                   <div class="col-xs-6">
                     <button class="btn-primary">Handtekenen</button>
-                    <button data-ng-click="activeItem.id=activeItem.id+1;" data-ng-disabled="selectedMessage==undefined">Volgend bericht</button>
+                    <!-- <button data-ng-click="activeItem.id=activeItem.id+1;" data-ng-if="extraFilters=={}" data-ng-disabled="selectedMessage[$index+1]=undefined">Volgend bericht</button> -->
                   </div>
                   <div class="col-xs-6 text-right">
                     Te ondertekenen tegen: <strong>vandaag</strong>

@@ -110,7 +110,7 @@ html {
  */
 .list-mailbox {
 	@extend .list-unstyled;
-	border-top: 1px solid $gray-lighter;
+	// border-top: 1px solid $gray-lighter;
 	// padding-top: rem(56);
 
 	> li {

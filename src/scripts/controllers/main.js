@@ -28,12 +28,13 @@
   $scope.$on('$locationChangeStart', function() {
     // console.log($routeParams);
     var cat = $location.path().slice(1);
-    console.log(cat);
+    // console.log(cat);
     if (cat !== "") {
       $scope.extraFilters = {category:cat};
     } else {
       $scope.extraFilters = {};
     }
+    $scope.filters = {};
   });
 
 
