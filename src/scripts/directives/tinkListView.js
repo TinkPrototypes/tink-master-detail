@@ -19,7 +19,7 @@
 
  			function callChange(item){
 
- 				var callData = undefined;
+ 				var callData = '';
  				if(item){
  					callData = {
  						$active:item.id
@@ -37,7 +37,7 @@
  						$scope.tinkActiveItem = undefined;
  						ctrl.unselect();
  					}
- 					activeItem = item;							
+ 					activeItem = item;
  					return;
  				}
  				if(activeItem && activeItem.id === item.id){
@@ -46,14 +46,14 @@
  				if(activeItem){
  					//disable item
  					$(activeItem.elem).removeClass('active');
- 				}	
+ 				}
 
  				callChange(item);
 
  				activeItem = item;
  				$(activeItem.elem).addClass('active');
 
- 			};
+ 			}
  			this.unselect = function(){
  				if(activeItem){
  					$(activeItem.elem).removeClass('active');
@@ -72,10 +72,10 @@
  				}else{
  					setElementActive(undefined);
  				}
- 			}
+ 			};
  			this.setActiveItem = function(id){
  				$scope.tinkActiveItem = id;
- 			}
+ 			};
  			this.addItem=function(item){
  				if(!items[item.id]){
  					items[item.id] = item;
@@ -106,10 +106,10 @@
  			scope.$on('$destroy',function(){
  				ctrl.removeView($(elem));
  			});
- 			scope.$watch('tinkActiveItem',function(newData,oldData){
+ 			scope.$watch('tinkActiveItem',function(newData/*,oldData*/){
  				ctrlList.setElementActive(newData);
  			});
 
  		}
- 	}
+ 	};
  }]);

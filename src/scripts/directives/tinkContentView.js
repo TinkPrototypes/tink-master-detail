@@ -17,5 +17,5 @@
  				ctrl.removeView($(elem));
  			});
  		}
- 	}
+ 	};
  }]);
