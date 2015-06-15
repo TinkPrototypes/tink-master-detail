@@ -3,13 +3,13 @@
     <p class="nav-aside-title">Documenten</p>
     <ul>
       <li>
-        <a href="#/"><span>Te tekenen</span></a>
+        <a href=""><span>Te tekenen</span></a>
          <ul>
-          <li><a href="#/"><span>Alle documenten</span><span class="badge">4</span></a></li>
-          <li><a href="#/"><span>Dringend</span><span class="badge">1</span></a></li>
-          <li><a href="#/"><span>Sport</span><span class="badge">2</span></a></li>
-          <li><a href="#/"><span>Jeugd</span></a></li>
-          <li><a href="#/"><span>Bestuurszaken</span><span class="badge">1</span></a></li>
+          <li><a href="#/"><span>Alle documenten</span><span class="badge">{{messages.length}}</span></a></li>
+          <li><a href="#/dringend"><span>Dringend</span><span class="badge">{{(messages | filter:{category:"dringend"}).length}}</span></a></li>
+          <li><a href="#/sport"><span>Sport</span><span class="badge">{{(messages | filter:{category:"sport"}).length}}</span></a></li>
+          <li><a href="#/jeugd"><span>Jeugd</span><span class="badge">{{(messages | filter:{category:"jeugd"}).length}}</span></a></li>
+          <li><a href="#/bestuurszaken"><span>Bestuurszaken</span><span class="badge">{{(messages | filter:{category:"bestuurszaken"}).length}}</span></a></li>
         </ul>
         <ul>
         </ul>

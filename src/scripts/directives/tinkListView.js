@@ -104,7 +104,7 @@
 			  	scope.$destroy();
 			});
  			scope.$on('$destroy',function(){
- 				ctrl.removeView($(elem));
+ 				// ctrl.removeView($(elem));
  			});
  			scope.$watch('tinkActiveItem',function(newData/*,oldData*/){
  				ctrlList.setElementActive(newData);

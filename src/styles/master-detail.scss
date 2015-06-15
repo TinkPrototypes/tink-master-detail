@@ -23,6 +23,9 @@ html {
  */
 .main {
 	height: 100vh; // TO DO: check if this is ok to do by default
+	padding-top: rem($nav-top-height);
+	top: 0;
+
 }
 
 %split-view {

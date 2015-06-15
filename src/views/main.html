@@ -22,7 +22,7 @@
             </tink-list-view>
             <tink-content-view>
               <ul class="list-mailbox">
-                <li data-ng-repeat="message in messages | filter:filters"  data-tink-list-item="message.id" data-ng-class="{'unread': message.unread}">
+                <li data-ng-repeat="message in messages | filter:filters | filter:extraFilters"  data-tink-list-item="message.id" data-ng-class="{'unread': message.unread}">
                   <a title="{{message.title}} - {{message.description}}">
                     <div>
                       <span class="list-mailbox-icons"><span class="badge-warning" data-ng-if="message.eid">eID</span></span>
@@ -59,6 +59,7 @@
                 <div class="row vertical-align-middle margin-bottom margin-top">
                   <div class="col-xs-6">
                     <button class="btn-primary">Handtekenen</button>
+                    <button data-ng-click="activeItem.id=activeItem.id+1;" data-ng-disabled="selectedMessage==undefined">Volgend bericht</button>
                   </div>
                   <div class="col-xs-6 text-right">
                     Te ondertekenen tegen: <strong>vandaag</strong>
