@@ -4,7 +4,7 @@ v1.0.0
 
 ## What is this repository for?
 
-A skeleton example of a mailbox view.
+A skeleton example of a mailbox view, made with the Tink framework.
 
 ## Setup
 
