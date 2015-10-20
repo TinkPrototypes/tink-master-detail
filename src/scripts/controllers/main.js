@@ -8,7 +8,7 @@
  * Controller of the tinkApp
  */
  angular.module('tinkApp')
- .controller('MainCtrl', function ($scope, $rootScope, $location, $routeParams, tinkApi, $filter/*,$timeout*/) {
+ .controller('MainCtrl', function ($scope, $rootScope, $location, $routeParams, tinkApi, $filter/*, $timeout*/) {
 
   // Which item to highlight when loaded
   $scope.activeItem = {
@@ -29,7 +29,7 @@
     // console.log($routeParams);
     var cat = $location.path().slice(1);
     // console.log(cat);
-    if (cat !== "") {
+    if (cat !== '') {
       $scope.extraFilters = {category:cat};
     } else {
       $scope.extraFilters = {};
@@ -82,7 +82,7 @@
       }
     ];
 
-  // }, 1500);
+  // }, 0);
 
   $scope.openMenu = function(){
     tinkApi.sideNavToggle.openById('sideNavLeft');

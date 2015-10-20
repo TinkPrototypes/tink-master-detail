@@ -17,7 +17,7 @@ module.exports = function (grunt) {
     dist: 'dist',
     version: currentversion,
     module: require('./package.json').name,
-    domain: 'tink.master-detail'
+    domain: 'tink.split-view-prototype'
   };
 
   // Define the configuration for all the tasks
